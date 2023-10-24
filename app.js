@@ -24,10 +24,10 @@ app.get("/", (req, res) => {
 app.use("/api/v1", post);
 app.use("/api/v1", user);
 
-app.use(express.static(path.join(__dirname, "../backend/build/index.html")));
+app.use(express.static(path.join(__dirname, "./build/index.html")));
 
 app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "../backend/build/index.html"));
+  res.sendFile(path.resolve(__dirname, "./build/index.html"));
 });
 
 const start = async () => {
