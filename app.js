@@ -1,6 +1,8 @@
 const express = require("express");
 const app = express();
 const cookieParser = require("cookie-parser");
+const { connectDatabase } = require("./config/database");
+const cloudinary = require("cloudinary");
 
 if (process.env.NODE_ENV !== "production") {
   require("dotenv").config({ path: "./config/.env" });
@@ -21,4 +23,22 @@ app.get("/", (req, res) => {
 app.use("/api/v1", post);
 app.use("/api/v1", user);
 
-module.exports = app;
+const start = async () => {
+  try {
+    await connectDatabase();
+
+    cloudinary.config({
+      cloud_name: process.env.CLOUDINARY_NAME,
+      api_key: process.env.CLOUDINARY_KEY,
+      api_secret: process.env.CLOUDINARY_API_SECRET,
+    });
+
+    app.listen(process.env.PORT, () => {
+      console.log(`Server is running on ${process.env.PORT}`);
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+start();
