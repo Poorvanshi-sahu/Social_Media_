@@ -16,6 +16,7 @@ const {
   getMyAllPost,
   getUserPosts,
 } = require("../controllers/user");
+
 const { isAuthenticated } = require("../middleware/auth");
 
 router.route("/register").post(register);
@@ -36,7 +37,7 @@ router.route("/me").get(isAuthenticated, myProfile);
 
 router.route("/myProfile").get(isAuthenticated, myProfile);
 
-router.route("/my/post").get(isAuthenticated, getMyAllPost);
+router.route("/my/posts").get(isAuthenticated, getMyAllPost);
 
 router.route("/user/:id").get(isAuthenticated, getUserProfile);
 

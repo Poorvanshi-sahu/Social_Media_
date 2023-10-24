@@ -3,6 +3,7 @@ const app = express();
 const cookieParser = require("cookie-parser");
 const { connectDatabase } = require("./config/database");
 const cloudinary = require("cloudinary");
+const path = require("path");
 
 if (process.env.NODE_ENV !== "production") {
   require("dotenv").config({ path: "./config/.env" });
@@ -23,10 +24,10 @@ app.get("/", (req, res) => {
 app.use("/api/v1", post);
 app.use("/api/v1", user);
 
-app.use(express.static(path.join(__dirname, "../frontend/build")));
+app.use(express.static(path.join(__dirname, "../backend/build/index.html")));
 
 app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "../frontend/build/index.html"));
+  res.sendFile(path.resolve(__dirname, "../backend/build/index.html"));
 });
 
 const start = async () => {
