@@ -6,5 +6,10 @@
   ],
   "routes": [
      { "src": "/(.*)", "dest": "/app.js" }
-  ]
+  ],
+   "functions": {
+     "myFunction": {
+       "maxDuration": 10
+     }
+   }
 }
