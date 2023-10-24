@@ -32,6 +32,8 @@ router.route("/update/profile").put(isAuthenticated, updateProfile);
 
 router.route("/delete/me").delete(isAuthenticated, deleteMyProfile);
 
+router.route("/me").get(isAuthenticated, myProfile);
+
 router.route("/myProfile").get(isAuthenticated, myProfile);
 
 router.route("/my/post").get(isAuthenticated, getMyAllPost);
