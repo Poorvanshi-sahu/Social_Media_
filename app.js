@@ -19,12 +19,12 @@ const user = require("./routes/users");
 
 app.use(express.static(path.join(__dirname, "./build/index.html")));
 
-// app.get("*", (req, res) => {
-//   res.sendFile(path.resolve(__dirname, "./build/index.html"));
-// });
-
 app.use("/api/v1", post);
 app.use("/api/v1", user);
+
+app.get("/", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "./build/index.html"));
+});
 
 const start = async () => {
   try {
