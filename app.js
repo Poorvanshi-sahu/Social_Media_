@@ -17,7 +17,7 @@ app.use(cookieParser());
 const post = require("./routes/post");
 const user = require("./routes/users");
 
-// app.use(express.static(path.join(__dirname, "./build/index.html")));
+app.use(express.static(path.join(__dirname, "./build/index.html")));
 
 // app.get("*", (req, res) => {
 //   res.sendFile(path.resolve(__dirname, "./build/index.html"));
