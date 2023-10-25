@@ -110,9 +110,6 @@ exports.UserFollow = async (req, res) => {
     const userToFollow = await User.findById(req.params.id);
     const logInUser = await User.findById(req.user._id);
 
-    console.log(userToFollow);
-    console.log(logInUser);
-
     if (!userToFollow) {
       res.status(404).json({
         success: false,
@@ -496,7 +493,7 @@ exports.getUserPosts = async (req, res) => {
       const post = await Post.findById(user.posts[i]).populate(
         "likes comments.user owner"
       );
-      await posts.push(post);
+      posts.push(post);
     }
 
     res.status(200).json({
