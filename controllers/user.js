@@ -177,12 +177,12 @@ exports.updatePassword = async (req, res) => {
     await user.save();
 
     res.status(200).json({
-      success: false,
+      success: true,
       message: "Password Updated",
     });
   } catch (error) {
     res.status(500).json({
-      success: true,
+      success: false,
       message: error.message,
     });
   }
@@ -423,7 +423,7 @@ exports.forgotPassword = async (req, res) => {
 
 exports.resetPassword = async (req, res) => {
   try {
-    const resetPasswordToken = crypto
+    const resetPasswordToken = ucrypto
       .createHash("sha256")
       .update(req.params.token)
       .digest("hex");
